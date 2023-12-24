@@ -1,0 +1,62 @@
+<div class="h-[calc(100vh-4rem)] flex justify-center items-center">
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <h1 class="text-slate-200 font-bold text-4xl mb-4">Register</h1>
+
+    <label for="name" class="text-slate-500 mb-2 block text-sm">name:</label>
+    <input
+      type="text"
+      name="name"
+      ngModel
+      required
+      class="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full pr-20"
+      placeholder="John Doe"
+    />
+    <label for="age" class="text-slate-500 mb-2 block text-sm">age:</label>
+    <input
+      type="number"
+      name="age"
+      ngModel
+      required
+      class="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+      placeholder="0"
+    />
+    <label for="email" class="text-slate-500 mb-2 block text-sm">email:</label>
+    <input
+      type="text"
+      name="email"
+      ngModel
+      required
+      class="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+      placeholder="user@user.com"
+    />
+    <label for="password" class="text-slate-500 mb-2 block text-sm"
+      >password:</label
+    >
+    <input
+      type="password"
+      name="password"
+      ngModel
+      required
+      class="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+      placeholder="*******"
+    />
+    <label for="confirmPassword" class="text-slate-500 mb-2 block text-sm"
+      >confirmPassword:</label
+    >
+    <input
+      type="password"
+      name="confirmPassword"
+      ngModel
+      required
+      class="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
+      placeholder="*******"
+    />
+
+    <button
+      type="submit"
+      class="w-full bg-blue-500 text-white p-3 rounded-lg mt-2"
+    >
+      Registrarse
+    </button>
+  </form>
+</div>
