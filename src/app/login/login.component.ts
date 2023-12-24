@@ -17,24 +17,32 @@ export class LoginComponent {
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
-      const data: any = form.value;
-      if (data.email === 'test@example.com' && data.password === '1') {
-        console.log('click');
-        this.authService.getToken().subscribe(
-          (response) => {
-            if (response && response.accessToken) {
-              localStorage.setItem('token', response.accessToken);
+      const { email, password } = form.value;
 
-              this.router.navigate(['/dashboard']);
+      if (email && password) {
+        this.authService.getToken().subscribe(
+          (response: any) => {
+            if (response && response.accessToken) {
+              this.authService.login(
+                email,
+                password,
+                this.router,
+                response.accessToken
+              );
+
+              localStorage.setItem('token', response.accessToken);
             }
           },
-          (error) => {
+          (error: any) => {
             console.error('Error fetching token:', error);
+            localStorage.removeItem('token');
           }
         );
       } else {
         this.error = 'Invalid credentials';
       }
+    } else {
+      this.error = 'Invalid data';
     }
   }
 }
