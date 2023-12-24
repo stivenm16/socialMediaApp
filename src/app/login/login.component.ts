@@ -18,6 +18,7 @@ export class LoginComponent {
     if (form.valid) {
       const data: any = form.value;
       if (data.email === 'test@example.com' && data.password === 'password') {
+        localStorage.setItem('token', 'token')
         this.router.navigate(['/dashboard']);
       } else {
         this.error = 'Invalid credentials';
