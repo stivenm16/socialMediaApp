@@ -14,11 +14,11 @@ import { Post } from '../types/types';
 })
 export class DashboardComponent implements OnInit {
   postsArray: Post[] = [];
-  currentUserId = '3becdf1e-bfde-43dd-a451-5a7eca06b11b';
+  currentUserId = localStorage.getItem('userId') || '';
   newPost: Post = {
     title: '',
     content: '',
-    userid: this.currentUserId,
+    userid: this.currentUserId!,
   };
 
   constructor(private postsService: PostsService) {}
@@ -38,13 +38,26 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  deletedPost(posts: Post[]) {
+    console.log('eliminando');
+    this.fetchPosts();
+  }
+
   onLikesChanged(updatedPosts: Post[]): void {
     this.postsArray = updatedPosts;
   }
   createNewPost() {
     try {
-      this.postsService.addPost(this.newPost);
-      this.fetchPosts();
+      this.postsService.addPost(this.newPost).subscribe((res: any) => {
+        if (res) {
+          this.fetchPosts();
+          this.newPost = {
+            ...this.newPost,
+            title: '',
+            content: '',
+          };
+        }
+      });
     } catch (error) {
       console.error(error);
     }

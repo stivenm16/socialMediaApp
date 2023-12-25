@@ -5,4 +5,49 @@
     (delete)="deletePost($event)"
     (like)="likePost($event)"
   ></app-post>
+  <div
+    *ngIf="showEditModal"
+    class="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-gray-800 bg-opacity-75"
+  >
+    <div class="bg-white rounded-lg p-8 max-w-md">
+      <h2 class="text-xl font-semibold mb-4">Edit Post</h2>
+      <form (submit)="submitEditedPost()">
+        <div class="mb-4">
+          <label for="editTitle" class="block mb-1">Title:</label>
+          <input
+            type="text"
+            id="editTitle"
+            [(ngModel)]="editedPost.title"
+            name="editTitle"
+            class="w-full border rounded-md px-3 py-2"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="editContent" class="block mb-1">Content:</label>
+          <textarea
+            id="editContent"
+            [(ngModel)]="editedPost.content"
+            name="editContent"
+            rows="4"
+            class="w-full border rounded-md px-3 py-2"
+          ></textarea>
+        </div>
+        <div class="text-right">
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            (click)="closeEditModal()"
+            class="ml-2 text-gray-500 hover:text-gray-700 font-semibold"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

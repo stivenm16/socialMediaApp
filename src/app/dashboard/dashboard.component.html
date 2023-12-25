@@ -24,5 +24,11 @@
       Post
     </button>
   </form>
-  <app-posts [posts]="postsArray" [currentUserID]="currentUserId" (likesChanged)="onLikesChanged($event)"></app-posts>
+  <app-posts
+    [posts]="postsArray"
+    [currentUserID]="currentUserId"
+    (likesChanged)="onLikesChanged($event)"
+    (createdPost)="onLikesChanged($event)"
+    (deletedPost)="deletedPost($event)"
+  ></app-posts>
 </div>

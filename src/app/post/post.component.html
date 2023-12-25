@@ -2,20 +2,18 @@
 <div class="bg-white p-4 rounded shadow-md w-96 m-5">
   <div class="flex items-center mb-4">
     <img
-      src="user-profile-image-url"
+      src="../../assets/user.png"
       alt="User Profile"
       class="w-10 h-10 rounded-full mr-2"
     />
     <div>
-      <p class="font-bold">John Doe</p>
+      <p class="font-bold">{{ post.title }}</p>
       <p class="text-gray-600 text-sm">
         Posted on: {{ post.createdat | date : "medium" }}
       </p>
     </div>
   </div>
-  <h2 class="text-lg font-bold mb-2">{{ post.title }}</h2>
   <p class="mb-4">{{ post.content }}</p>
-  <!-- <p class="mb-4">content</p> -->
 
   <div class="flex items-center justify-between">
     <div class="flex items-center">

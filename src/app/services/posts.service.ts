@@ -26,13 +26,19 @@ export class PostsService {
 
   addPost(newPost: Post): any {
     const headers = this.getHeaders();
-    return this.http
-      .post<Post[]>(`${this.api}/createPost`, newPost, {
+    return this.http.post<Post[]>(`${this.api}/createPost`, newPost, {
+      headers,
+    });
+  }
+  updatePost(postId: string, title?: string, content?: string): any {
+    const headers = this.getHeaders();
+    return this.http.put<Post[]>(
+      `${this.api}/updatePost/${postId}`,
+      { title, content },
+      {
         headers,
-      })
-      .subscribe((res) => {
-        return res;
-      });
+      }
+    );
   }
   addLike(postId: string, userId: string): any {
     const headers = this.getHeaders();

@@ -43,6 +43,7 @@ export class AuthService {
       .subscribe(
         (res) => {
           if (res.user.id) {
+            localStorage.setItem('userId', res.user.id);
             router.navigate(['/dashboard']);
           }
           return true;
