@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Post } from '../types/types';
 
 @Component({
@@ -11,7 +11,17 @@ import { Post } from '../types/types';
   providers: [DatePipe],
 })
 export class PostComponent {
+  @Output() edit: EventEmitter<Post> = new EventEmitter<Post>();
+  @Output() delete: EventEmitter<Post> = new EventEmitter<Post>();
   constructor(datePiPe: DatePipe) {}
 
   @Input() post!: Post;
+
+  onEdit(): void {
+    this.edit.emit(this.post);
+  }
+
+  onDelete(): void {
+    this.delete.emit(this.post);
+  }
 }

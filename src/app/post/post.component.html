@@ -13,9 +13,20 @@
       </p>
     </div>
   </div>
-
+  <h2 class="text-lg font-bold mb-2">{{ post.title }}</h2>
   <p class="mb-4">{{ post.content }}</p>
   <!-- <p class="mb-4">content</p> -->
+
+<div class="flex items-center justify-between">
+    <div class="flex items-center">
+      <button (click)="onEdit()" class="mr-4">
+        Edit
+      </button>
+      <button (click)="onDelete()">
+        Delete
+      </button>
+    </div>
+  </div>
 
   <div class="flex items-center justify-between">
     <div class="flex items-center">

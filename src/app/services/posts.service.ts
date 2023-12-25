@@ -34,4 +34,14 @@ export class PostsService {
         return res;
       });
   }
+  deletePost(id: string): any {
+    const headers = this.getHeaders();
+    return this.http
+      .delete<Post[]>(`${this.api}/deletePost/${id}`, {
+        headers,
+      })
+      .subscribe((res) => {
+        return res;
+      });
+  }
 }

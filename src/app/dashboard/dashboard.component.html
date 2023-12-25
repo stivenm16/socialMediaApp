@@ -1,5 +1,28 @@
-<h1 class="text-gray-500">Prueba</h1>
-<button class="bg-white p-3 m-4 rounded" (click)="createNewPost()">
-  Create New Post
-</button>
-<app-posts [posts]="postsArray"></app-posts>
+<div class="flex flex-col items-center justify-center">
+  <h1 class="text-gray-500 text-xl text-center mt-8 mb-4">Write a post!</h1>
+  <form
+    class="m-5 w-3/4 flex flex-col items-center"
+    (ngSubmit)="createNewPost()"
+  >
+    <input
+      [(ngModel)]="newPost.title"
+      name="postTitle"
+      type="text"
+      class="w-full p-2 mb-2 border rounded-md resize-none"
+      placeholder="Title"
+    />
+    <textarea
+      [(ngModel)]="newPost.content"
+      name="postContent"
+      class="w-full p-2 border rounded-md resize-none"
+      placeholder="Write your post here"
+    ></textarea>
+    <button
+      type="submit"
+      class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Post
+    </button>
+  </form>
+  <app-posts [posts]="postsArray" [currentUserID]="currentUserId"></app-posts>
+</div>
