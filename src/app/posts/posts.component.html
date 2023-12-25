@@ -1,4 +1,13 @@
-<div *ngFor="let post of posts">
+<div class="p-5">
+  <input
+    type="text"
+    class="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-500"
+    placeholder="Search by title..."
+    [(ngModel)]="searchText"
+    (input)="filterPostsByTitle()"
+  />
+</div>
+<div *ngFor="let post of filteredPosts">
   <app-post
     [post]="post"
     (edit)="editPost($event)"

@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PostComponent } from '../post/post.component';
 import { PostsService } from '../services/posts.service';
@@ -12,7 +19,7 @@ import { Post } from '../types/types';
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.css',
 })
-export class PostsComponent {
+export class PostsComponent implements OnChanges {
   @Input() posts: Post[] = [];
   @Input() currentUserID!: string;
   @Output() likesChanged: EventEmitter<Post[]> = new EventEmitter<Post[]>();
@@ -20,7 +27,36 @@ export class PostsComponent {
   @Output() deletedPost: EventEmitter<Post[]> = new EventEmitter<Post[]>();
   editedPost: Post = { id: '', title: '', content: '', userid: '' };
   showEditModal = false;
-  constructor(private postService: PostsService) {}
+  searchText: string = '';
+  filteredPosts: Post[] = [];
+
+  constructor(private postService: PostsService) {
+    this.filteredPosts = [...this.posts];
+  }
+
+  ngOnInit(): void {
+    this.updateFilteredPosts();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes) {
+      this.updateFilteredPosts();
+    }
+  }
+
+  updateFilteredPosts(): void {
+    if (this.searchText.trim() !== '') {
+      this.filteredPosts = this.posts.filter((post) =>
+        post.title?.toLowerCase().includes(this.searchText.toLowerCase())
+      );
+    } else {
+      this.filteredPosts = [...this.posts];
+    }
+  }
+
+  filterPostsByTitle(): void {
+    this.updateFilteredPosts();
+  }
 
   isUserAuthorized(postUserID: string): boolean {
     return this.currentUserID === postUserID;
