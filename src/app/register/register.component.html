@@ -2,10 +2,12 @@
   <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
     <h1 class="text-slate-200 font-bold text-4xl mb-4">Register</h1>
 
-    <label for="name" class="text-slate-500 mb-2 block text-sm">name:</label>
+    <label for="fullName" class="text-slate-500 mb-2 block text-sm"
+      >name:</label
+    >
     <input
       type="text"
-      name="name"
+      name="fullName"
       ngModel
       required
       class="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full pr-20"
