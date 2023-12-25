@@ -38,6 +38,9 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  onLikesChanged(updatedPosts: Post[]): void {
+    this.postsArray = updatedPosts;
+  }
   createNewPost() {
     try {
       this.postsService.addPost(this.newPost);

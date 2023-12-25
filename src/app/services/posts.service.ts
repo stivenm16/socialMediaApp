@@ -34,6 +34,16 @@ export class PostsService {
         return res;
       });
   }
+  addLike(postId: string, userId: string): any {
+    const headers = this.getHeaders();
+    return this.http.post<Post[]>(
+      `${this.api}/like/${postId}`,
+      { userId },
+      {
+        headers,
+      }
+    );
+  }
   deletePost(id: string): any {
     const headers = this.getHeaders();
     return this.http

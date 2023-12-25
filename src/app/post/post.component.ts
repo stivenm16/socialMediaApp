@@ -13,6 +13,7 @@ import { Post } from '../types/types';
 export class PostComponent {
   @Output() edit: EventEmitter<Post> = new EventEmitter<Post>();
   @Output() delete: EventEmitter<Post> = new EventEmitter<Post>();
+  @Output() like: EventEmitter<Post> = new EventEmitter<Post>();
   constructor(datePiPe: DatePipe) {}
 
   @Input() post!: Post;
@@ -23,5 +24,9 @@ export class PostComponent {
 
   onDelete(): void {
     this.delete.emit(this.post);
+  }
+
+  onLike(): void {
+    this.like.emit(this.post);
   }
 }
