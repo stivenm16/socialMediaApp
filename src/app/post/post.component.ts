@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ProfileService } from '../profile/profile.service';
 import { Post } from '../types/types';
 
 @Component({
@@ -14,8 +15,29 @@ export class PostComponent {
   @Output() edit: EventEmitter<Post> = new EventEmitter<Post>();
   @Output() delete: EventEmitter<Post> = new EventEmitter<Post>();
   @Output() like: EventEmitter<Post> = new EventEmitter<Post>();
-  constructor(datePiPe: DatePipe) {}
+  public postOwner: string | undefined;
+  constructor(private profileService: ProfileService) {
+    this.getInfo();
+  }
 
+  getInfo(): void {
+    const email = localStorage.getItem('email');
+    this.profileService.getUserInfo(email!).subscribe(
+      (res: any) => {
+        if (res) {
+          const { fullname } = res;
+          this.postOwner = fullname;
+          return res;
+        }
+        return true;
+      },
+      (error: any) => {
+        console.error('getInfo error:', error.error.message);
+
+        return false;
+      }
+    );
+  }
   @Input() post!: Post;
 
   onEdit(): void {

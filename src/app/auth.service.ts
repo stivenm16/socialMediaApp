@@ -57,7 +57,9 @@ export class AuthService {
       );
   }
 
-  logout(): void {
+  logout(router: Router): void {
+    localStorage.clear();
+    router.navigate(['/login']);
     this.isAuthenticated = false;
   }
 }

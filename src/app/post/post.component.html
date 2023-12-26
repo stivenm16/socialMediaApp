@@ -7,12 +7,14 @@
       class="w-10 h-10 rounded-full mr-2"
     />
     <div>
-      <p class="font-bold">{{ post.title }}</p>
+      <p class="font-bold">{{ postOwner }}</p>
+
       <p class="text-gray-600 text-sm">
         Posted on: {{ post.createdat | date : "medium" }}
       </p>
     </div>
   </div>
+  <p class="font-bold">{{ post.title }}</p>
   <p class="mb-4">{{ post.content }}</p>
 
   <div class="flex items-center justify-between">
