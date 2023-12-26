@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { PostsComponent } from '../posts/posts.component';
 import { PostsService } from '../services/posts.service';
 import { Post } from '../types/types';
+import { SideNavComponent } from '../side-nav/side-nav.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PostsComponent, FormsModule],
+  imports: [PostsComponent, FormsModule, SideNavComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })

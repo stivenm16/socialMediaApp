@@ -44,6 +44,7 @@ export class AuthService {
         (res) => {
           if (res.user.id) {
             localStorage.setItem('userId', res.user.id);
+            localStorage.setItem('email', res.user.email);
             router.navigate(['/dashboard']);
           }
           return true;

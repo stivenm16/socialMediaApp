@@ -74,6 +74,7 @@ export class PostsComponent implements OnChanges {
     this.showEditModal = false;
     this.editedPost = { id: '', title: '', content: '', userid: '' }; // Reset the edited post
   }
+
   submitEditedPost(): void {
     this.postService
       .updatePost(
@@ -101,6 +102,7 @@ export class PostsComponent implements OnChanges {
         }
       );
   }
+
   openEditForm(post: Post): void {
     this.showEditModal = true;
     this.editedPost = {
